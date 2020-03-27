@@ -27,7 +27,7 @@ class ProxyCompany(Agent):
             self.talent = 0.01
         self.effort = 0
         self.company_proxy = np.cos(self.company_policy) * self.effort
-        self.goal = np.cos(self.model.goal_angle - self.company_policy) * self.effort
+        self.goal = self.company_policy#np.cos(self.model.goal_angle - self.company_policy) * self.effort
         self.goal_oc = np.sin(self.company_policy) * self.effort
         self.goal_scale = self.model.goal_scale
         self.utility = np.nan

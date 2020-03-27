@@ -76,6 +76,7 @@ for run in data_pre.Run:
 ''' Full data (model level)'''
 modeldata = pd.merge(data_pre, collector_data, on="Run")
 modeldata = modeldata.drop("DataCollector", 1)
+modeldata.to_pickle("model_data.pkl")
  
 ''' Data Collector data (all steps, agent level) '''
 collector_data = pd.DataFrame()
@@ -88,6 +89,7 @@ for run in data_pre.Run:
  
 ''' Full data (agent level)'''
 agentdata = pd.merge(data_pre, collector_data, on="Run")
+agentdata.to_pickle('agent_data.pkl')
 companydata = agentdata[agentdata["Effort"] == "none"]
 agentdata = agentdata[agentdata["Effort"] != "none"]
 agentdata = agentdata.drop("DataCollector", 1)
