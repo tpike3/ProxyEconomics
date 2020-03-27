@@ -15,7 +15,7 @@ def agents_to_company(model, i, j, num_agents_left, co):
     num_agents_left -= 1
     model.ml.add(A)
     model.ml.add_link([(co,A)])
-    ''' Add all agen ts row wise from top left to bottom right '''
+    ''' Add all agents row wise from top left to bottom right '''
     if model.grid.width > 1 and model.grid.height > 1:
         x = (i*10+j) % model.grid.width
         y = int((i*10+j)/model.grid.height)
@@ -38,7 +38,7 @@ def Build_Multi_Layer_World(model):
     Connections will be created after companies are built. 
     
     '''
-    num_companies = model.num_agents//10
+    num_companies = int(model.num_agents/10)
     num_agents_per = int(model.num_agents/10)
     num_agents_left = copy.copy(model.num_agents)
     company_count = 1
