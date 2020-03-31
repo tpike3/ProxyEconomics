@@ -79,8 +79,8 @@ class ProxyAgent(Agent):
             # neighbors = self.model.grid.get_neighbors(self.pos, moore=True, include_center=True, radius=2)
             # proxies = list(n.proxy for n in neighbors)
             #ml-change switch to ml scheduler
-            #agents = self.schedule.agents
-            agents = self.model.ml.agents
+            agents = self.model.schedule.agents
+            #agents = self.model.ml.agents
             proxies = list(n.proxy for n in agents if n.type == "individual")
             self.proxy = np.cos(self.practice) * self.effort
             own_proxy = self.proxy

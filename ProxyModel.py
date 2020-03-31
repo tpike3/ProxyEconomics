@@ -47,13 +47,13 @@ class ProxyModel(Model):
         self.survival_uncertainty = survival_uncertainty
         self.goal_scale = goal_scale
         #self.schedule = RandomActivation(self)
-        self.ml = mlm.MultiLevel_Mesa(self)
+        self.schedule = mlm.MultiLevel_Mesa(self)
         #!!! A cheat to get the agent list update ml mesa to prevent data collector error 
-        self.schedule = self.ml
+        #self.schedule = self.ml.schedule
         self.running = True
         self.time = 0
-        #!!! Cheat becuase ml mesa is not compatible with batch runner
-        self.schedule.steps = self.time
+        #!!! Cheat because ml mesa is not compatible with batch runner
+        #self.schedule.steps = self.time
         self.goal_angle = goal_angle
  
         
@@ -88,7 +88,7 @@ class ProxyModel(Model):
         Deaths, births and genealogy are stored in "Genealogy")"""
         #ml-change switch agents reference
         #agents = self.schedule.agents
-        agents = list(self.ml.agents_by_type[ProxyAgent].values())
+        agents = list(self.schedule.agents_by_type[ProxyAgent].values())
         proxies = list(n.proxy for n in agents)
         rel_surv_thresh = self.competition
         ordered = np.sort(proxies)
@@ -121,11 +121,11 @@ class ProxyModel(Model):
     def step(self):
         ''' adjust effort levels in random order '''
         #ml-change switch step reference
-        #self.schedule.step()
-        self.ml.step()
+        self.schedule.step()
+        #self.ml.step()
         self.time += 1
-        #!!! Cheat becuase ml meas is not compatible with batchrunner
-        self.schedule.steps = self.time
+        #!!! Cheat because ml mesa is not compatible with batchrunner
+        #self.schedule.steps = self.time
         self.kill_and_replace()
         d = self.data_collect_interval
         #print (d, self.time, self.schedule.steps)

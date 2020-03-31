@@ -13,8 +13,8 @@ import copy
 def agents_to_company(model, i, j, num_agents_left, co):
     A = PA.ProxyAgent(num_agents_left, model, co)
     num_agents_left -= 1
-    model.ml.add(A)
-    model.ml.add_link([(co,A)])
+    model.schedule.add(A)
+    model.schedule.add_link([(co,A)])
     ''' Add all agen ts row wise from top left to bottom right '''
     if model.grid.width > 1 and model.grid.height > 1:
         x = (i*10+j) % model.grid.width
@@ -48,7 +48,7 @@ def Build_Multi_Layer_World(model):
     for i in range(num_companies): 
         name = "Company_" +str(i)
         C = PC.ProxyCompany(name, model)
-        model.ml.add(C)
+        model.schedule.add(C)
         if num_agents_left > num_agents_per:
             for j in range(num_agents_per):
                 num_agents_left = agents_to_company(model, i, j, num_agents_left,C)

@@ -25,8 +25,8 @@ import numpy as np
 def compute_mean_proxy_value(model):
     """ Returns the mean total proxy value across agents """
     #ml-change switch schedule reference
-    #proxy_values = [agent.proxy for agent in model.schedule.agents]
-    proxy_values = [agent.proxy for agent in model.ml.agents if agent.type == "individual"]
+    proxy_values = [agent.proxy for agent in model.schedule.agents if agent.type == "individual"]
+    #proxy_values = [agent.proxy for agent in model.ml.agents if agent.type == "individual"]
     return np.mean(proxy_values)
  
  
@@ -34,7 +34,7 @@ def compute_mean_goal_value(model):
     """ Returns the mean goal value across agents """
     #ml-change switch schedule reference
     #goal_values = [agent.goal for agent in model.schedule.agents]
-    goal_values = [agent.goal for agent in model.ml.agents if agent.type == "individual"]
+    goal_values = [agent.goal for agent in model.schedule.agents if agent.type == "individual"]
     return np.mean(goal_values)
  
  
@@ -42,7 +42,7 @@ def compute_mean_goal_oc(model):
     """ Returns the mean independent goal component across agents """
     #ml-change switch schedule reference
     #goal_oc = [agent.goal_oc for agent in model.schedule.agents]
-    goal_oc = [agent.goal_oc for agent in model.ml.agents if agent.type == "individual"]
+    goal_oc = [agent.goal_oc for agent in model.schedule.agents if agent.type == "individual"]
     return np.mean(goal_oc)
  
  
@@ -50,7 +50,7 @@ def compute_mean_effort(model):
     """ returns the mean effort across agents """
     #ml-change switch schedule reference
     #effort_values = [agent.effort for agent in model.schedule.agents]
-    effort_values = [agent.effort for agent in model.ml.agents if agent.type == "individual"]
+    effort_values = [agent.effort for agent in model.schedule.agents if agent.type == "individual"]
     return np.mean(effort_values)
  
  
@@ -58,7 +58,7 @@ def compute_mean_utility(model):
     """ returns the mean utility across agents """
     #ml-change switch schedule reference
     #utility_values = [agent.utility for agent in model.schedule.agents]
-    utility_values = [agent.utility for agent in model.ml.agents if agent.type == "individual"]
+    utility_values = [agent.utility for agent in model.schedule.agents if agent.type == "individual"]
     return np.mean(utility_values)
  
  
@@ -66,7 +66,7 @@ def compute_mean_practice(model):
     """ returns the mean practice angle across agents """
     #ml-change switch schedule reference
     #pr_vals = [agent.practice for agent in model.schedule.agents]
-    pr_vals = [agent.practice for agent in model.ml.agents if agent.type == "individual"]
+    pr_vals = [agent.practice for agent in model.schedule.agents if agent.type == "individual"]
     return np.arctan2(np.mean(np.sin(pr_vals)), np.mean(np.cos(pr_vals)))
 
 ####################################################
