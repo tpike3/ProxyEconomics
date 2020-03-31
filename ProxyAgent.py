@@ -19,7 +19,7 @@ class ProxyAgent(Agent):
         super().__init__(unique_id, model)
         self.practice = np.random.uniform(co.company_policy-(model.goal_angle/co.company_flexibility),
                                           co.company_policy+(model.goal_angle/co.company_flexibility))
-        #!!! what is going on here this means that self.goal is always 0???
+        #tpike: what is going on here this means that self.goal is always 0???
         #self.practice = self.model.goal_angle
         self.talent = np.random.normal(10, self.model.talent_sd)
         if self.talent < 0:
@@ -27,6 +27,7 @@ class ProxyAgent(Agent):
         self.effort = 0
         self.proxy = np.cos(self.practice) * self.effort
         self.goal = np.cos(self.model.goal_angle - self.practice) * self.effort
+        #Oliver: not sure what your asking above. self.goal is calculated here from practice and effort
         self.goal_oc = np.sin(self.practice) * self.effort
         self.goal_scale = self.model.goal_scale
         self.utility = np.nan
@@ -97,7 +98,7 @@ class ProxyAgent(Agent):
                 # prospect = 1
             else:
                 prospect = 0  # no competition
-            if (own_proxy-survival_threshold) < 0:  # loss aversion
+            if (own_proxy-survival_threshold) < 0:  # Kahneman Tversky loss aversion
                 prospect = -abs(prospect) * 2.25
                 # prospect = -1
             return prospect

@@ -1,0 +1,25 @@
+
+New parameters:
+-company-policies: an angle between a global proxy and a global goal (basically a company level practice-angle)
+-company-flexibility: the standard deviation of individual agent's practice angles around the company-policy during company initialization and inheritance.
+-company-mutation rate: standard deviation of policy mutation during inheritance
+
+The global goal is the societal goal of the whole industry (i.e. whatever people think they should be doing).
+The global proxy is what companies compete on (i.e. profit).
+Both are defined by the system level goal-angle. 
+
+Between company competition works on the mean global-proxy performances of companies 
+(i.e. the company-mean of the individual agent projections on the global proxy).
+Company make no decisions:
+- effort, proxy and goal values are emergent properties from the companies agents)
+- company-policy emerges through company-level cultural evolution 
+(companies stochastically go bankrupt if their global-proxy performance is insufficient and reproduce otherwise).
+I assume this would have to be added as a kill_and_replace_company function in the model class?
+
+Within company competition between agents works on individual performances toward the company policy 
+(i.e. the projection of individual performance on the company policy vector).
+This guides within company cultural evolution as previously. 
+Within company decisions are based on individual proxy-performance (i.e. performance toward company policy)
+and global goal performance.
+
+ 

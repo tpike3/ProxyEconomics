@@ -19,8 +19,9 @@ class ProxyCompany(Agent):
     def __init__(self, unique_id, model):
         super().__init__(unique_id, model)
         self.company_policy = np.random.uniform(0, self.model.goal_angle)
-        self.company_flexibility = np.random.randint(10,100)
+        self.company_flexibility = np.pi/10
         #!!! what is going on here this means that self.goal is always 0???
+        #oliver: initializing self.practice at the goal-angle means that agents start off completely oriented toward the goal, i.e. with large self.goal
         #self.practice = self.model.goal_angle
         self.talent = np.random.normal(10, self.model.talent_sd)
         if self.talent < 0:
